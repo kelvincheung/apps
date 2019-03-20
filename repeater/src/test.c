@@ -266,7 +266,7 @@ static int cmd_button(const struct shell *shell, size_t argc, char **argv)
 	gpio_pin_configure(gpio, BUTTON_PIN, (GPIO_DIR_IN | GPIO_INT
 			| GPIO_INT_EDGE | GPIO_PUD_PULL_UP
 			| GPIO_INT_ACTIVE_LOW));
-	pinmux_pin_pullup(pmx_dev, P_GPIO0, PMUX_FPU_EN);
+	pinmux_pin_pullup(pmx_dev, PIN_GPIO0_REG, PMUX_FPU_EN);
 
 	gpio_init_callback(&button_cb, button_callback, BIT(BUTTON_PIN));
 	gpio_add_callback(gpio, &button_cb);
@@ -283,7 +283,6 @@ static int cmd_button(const struct shell *shell, size_t argc, char **argv)
 #endif
 
 #if defined(CONFIG_PINMUX_UWP) && defined (CONFIG_GPIO_UWP)
-#define FUNC3 3
 #define PIN10 10
 #define PULLUP 1
 #define PMUX_DEV "pinmux_drv"
@@ -302,7 +301,7 @@ int reset_misc(void)
 		return -1;
 	}
 	/*set INT as GPIO10*/
-	pinmux_pin_set(pm_dev, INT, FUNC3);
+	pinmux_pin_set(pm_dev, PIN_INT_REG, PIN_FUNC_3);
 	printk("set INT as GPIO10\n");
 	/*set GPIO10 DIR out and enable GPIO10 */
 	gpio_pin_configure(p0_dev, PIN10, GPIO_DIR_OUT);
