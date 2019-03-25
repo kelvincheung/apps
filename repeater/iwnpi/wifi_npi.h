@@ -1,7 +1,7 @@
 #ifndef _WIFI_NPI_H_
 #define _WIFI_NPI_H_
 
-#include <net/wifimgr_drv.h>
+#include <net/wifi_drv.h>
 #include <stdlib.h>
 
 #define WIFINPI_DEV_NAME_STA	"WIFI_STA"
